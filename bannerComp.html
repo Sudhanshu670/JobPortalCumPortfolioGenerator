@@ -1,0 +1,49 @@
+<template>
+    
+    <div class="banner">
+        <template if:true={userPic}>
+            <img src={userPic} class="profile-pic"/>
+        </template> 
+        <template if:false={userPic}>
+            <img src={staticuserPic} class="profile-pic"/>
+        </template>
+        <div class="name">{fullName}</div>
+        <div class="designation">{designation} at {companyName}</div>
+        <div class="location">{companyLocation}</div>
+
+        <div> 
+            <template if:true={linkedinURL}>
+                <a href={linkedinURL} target="_blank">
+                    <img src={linkedin} class="social-icon"/>
+                </a>
+            </template>
+           
+            <template if:true={twitterUrl}>
+                <a href={twitterUrl} target="_blank">
+                    <img src={twitter} class="social-icon"/>
+                </a>
+            </template>
+            <template if:true={githubUrl}>
+                <a href={githubUrl} target="_blank">
+                    <img src={github} class="social-icon"/>
+                </a>
+            </template>
+            <template if:true={youtubeUrl}>
+                <a href={youtubeUrl} target="_blank">
+                    <img src={youtube} class="social-icon"/>
+                </a>
+            </template>
+            <template if:true={trailheadUrl}>
+                <a href={trailheadUrl} target="_blank">
+                    <img src={trailhead} class="social-icon"/>
+                </a>
+            </template>
+           
+
+            
+
+            
+           
+        </div>
+    </div>
+</template>

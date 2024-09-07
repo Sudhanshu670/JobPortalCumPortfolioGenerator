@@ -1,0 +1,18 @@
+<template>
+    <lightning-input type="text" variant="standard" name="Name" label="Project Name"
+    value={projectRec.Name}
+    onchange={handleChange} required></lightning-input>
+    <lightning-input-rich-text 
+    label="Enter desciption"
+    placeholder="Type something interesting"
+    value={projectRec.Project_Details__c}
+    name="Project_Details__c"
+    onchange={handleChange} required>
+    </lightning-input-rich-text>
+    <div class="slds-var-p-around_small slds-float_right">
+        <lightning-button-icon icon-name="utility:add" alternative-text="Save" title="Save" variant="Success" class="slds-m-left_xx-small" onclick={handleClick}></lightning-button-icon>
+        <lightning-button-icon icon-name="utility:delete"    alternative-text="Delete"   class="slds-m-left_xx-small" title="Delete"  onclick={handleClick}></lightning-button-icon>
+
+        
+    </div>
+</template>

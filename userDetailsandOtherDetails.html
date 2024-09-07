@@ -1,0 +1,22 @@
+<template>
+    <div class="userDetailsAndStatsWrapper">
+        <lightning-layout multiple-rows>
+            <lightning-layout-item size="12">
+                <template if:true={recordId}>
+                    <c-personal-user-details
+               record-id={recordId}
+               object-api-name={objectApiName}></c-personal-user-details>
+                </template>
+               
+            </lightning-layout-item>
+            <lightning-layout-item size="12">
+                <div class="headline">User Stats</div>
+                <template if:true={recordId}>
+                    <c-user-Stats
+               record-id={recordId}
+               object-api-name={objectApiName}></c-user-Stats>
+                </template>
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+</template>

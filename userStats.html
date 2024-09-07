@@ -1,0 +1,70 @@
+<template>
+    <lightning-tabset variant="standard" >
+        <lightning-tab class="heading" label="Certifications" value="Certifications" onactive={handleclick}>
+            <div class="body">
+                <template if:true={certifications} for:each={certifications} for:item="cert">
+                    <li key={cert}>
+                        
+                        
+                            <img src={certPic}  class="certPic">
+                            {cert}
+                      
+                    
+                    </li>
+            
+           
+             </template>
+             </div>
+        </lightning-tab>
+        <lightning-tab class="heading" label="Skills" value="two" onactive={handleclick}>
+            <div class="body">
+                <template if:true={skills} for:each={skills} for:item="skill">
+                    <li key={skill}>
+                          {skill} 
+                       
+                    </li>
+                 </template>
+            </div>
+            
+        </lightning-tab>
+        <lightning-tab class="heading" label="My Projects" value="Projects" onactive={handleclick}>
+            <div class="body">
+                <template if:true={projectsList} for:each={projectsList} for:item="proj">
+                    <li key={proj.Id}>
+                       {proj.Name} <br/>
+                       <lightning-formatted-rich-text
+                       value={proj.Project_Details__c}
+                   ></lightning-formatted-rich-text>
+                       
+                          
+                       
+                       
+                    </li>
+                 </template>
+            </div>
+          
+        </lightning-tab>
+        <lightning-tab class="heading" label="My Trailhead Stats" value="Stats" onactive={handleclick}>
+            <div class="body slds-text-align_center">
+                <template if:true={Badgeimage}>
+                    <img src={Badgeimage}>
+                  </template> <br/>
+                 <template if:true={Badges}>
+      
+                 Total Badges - {Badges}<br/>
+                 </template>
+                 <template if:true={SuperBadges}>
+                  Total SuperBadges - {SuperBadges}<br/>
+                  </template>
+                  <template if:true={Trials}>
+                      Total Trails - {Trials}<br/>
+                  </template>
+            </div>
+           
+        </lightning-tab>
+        
+       
+    </lightning-tabset>
+  
+    
+</template>

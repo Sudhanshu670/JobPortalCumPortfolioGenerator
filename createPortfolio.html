@@ -1,0 +1,99 @@
+<template>
+    <div>
+       <template if:true={showSpinner}>
+        Hold TIGHT! WE ARE GENERATING YOUR PORTFOLIO BASED ON YOUR INPUT
+        <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+
+       </template>
+        <lightning-accordion allow-multiple-sections-open active-section-name="A" onsectiontoggle={handleSectionToggle} >
+            <lightning-accordion-section name="A" label="Personal Details">
+                <lightning-layout multiple-rows>
+                    <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="12" large-device-size="12" >
+                      <lightning-input type="file" variant="standard" name="Upload Resume" label="Upload Resume" onchange={openfileUpload} required></lightning-input>
+                      <template if:true={fileData}>
+                        <p>{fileData.filename}</p>
+                    </template>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="12" large-device-size="12" required>
+                        <lightning-input type="file" variant="standard" name="Upload Your Photo" label="Upload Your Photo" onchange={openImageUpload}></lightning-input>
+                        <template if:true={imageData}>
+                            <p>{imageData.filename}</p>
+                        </template>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="12" large-device-size="6" >
+                        <lightning-input type="text"  value={portfolio.Full_Name__c} onchange={handleChange} name="Full_Name__c" label="Full Name" required></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="12" large-device-size="6">
+                        <lightning-input type="email"  value={portfolio.Email__c} onchange={handleChange} name="Email__c" label="Email" required></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="12" large-device-size="6">
+                        <lightning-input type="text"  value={portfolio.Designation__c} onchange={handleChange} name="Designation__c" label="Designation" required></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="12" large-device-size="6">
+                        <lightning-input type="text"  value={portfolio.Company_Name__c} onchange={handleChange} name="Company_Name__c" label="Company Name" required></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="12" large-device-size="6">
+                        <lightning-input type="text"  value={portfolio.Address__c} onchange={handleChange} name="Address__c" label="Address" required></lightning-input>
+                   </lightning-layout-item><lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6" large-device-size="12">
+                        <lightning-input type="text"  value={portfolio.MobileNo__c} onchange={handleChange} name="MobileNo__c" label="Mobile No." required></lightning-input>
+                        </lightning-layout-item>
+                 </lightning-layout>
+            </lightning-accordion-section>
+            <lightning-accordion-section name="Skills & Certifications" label="Skills & Certifications">
+               <lightning-dual-listbox  
+                name="Skills__c"
+                label="Select Skills"
+                source-label="Available"
+                selected-label="Selected"
+                field-level-help="This is a dual listbox"
+                options={skillOptions}
+                onchange={handleChange}
+                value={portfolio.Skills__c}
+                required >
+               </lightning-dual-listbox>
+               
+           
+
+            <lightning-dual-listbox 
+            name="Certifications__c"
+            label="Select Certifications"
+            source-label="Available"
+            selected-label="Selected"
+            field-level-help="This is a dual listbox"
+            options={certOptions}
+            onchange={handleChange}
+            value={portfolio.Certifications__c}
+            required>
+           </lightning-dual-listbox>
+           </lightning-accordion-section>
+          
+            <lightning-accordion-section name="Professional Links" label="Professional Links">
+
+              <lightning-input type="url" name="LinkedIn__c" label="LinkedIn" value={portfolio.LinkedIn__c} onchange={handleChange}></lightning-input>
+              <lightning-input type="url" name="Github__c" label="Github" value={portfolio.Github__c} onchange={handleChange}></lightning-input>
+              <lightning-input type="url" name="Trailhead__c" label="Trailhead" value={portfolio.Trailhead__c} onchange={handleChange} required></lightning-input>
+              <lightning-input type="url" name="Youtube__c" label="Youtube" value={portfolio.Youtube__c} onchange={handleChange}></lightning-input>
+              <lightning-input type="url" name="Twitter__c" label="Twitter"  value={portfolio.Twitter__c} onchange={handleChange}></lightning-input>
+            </lightning-accordion-section>
+            <lightning-accordion-section name="Trailhead Stats" label="Trailhead Stats">
+                <lightning-input type="text" name="Total_Badges__c" label="Total Badges" value={portfolio.Total_Badges__c} onchange={handleChange}></lightning-input>
+                <lightning-input type="text" name="Superbadges__c" label="Total Super Badges" value={portfolio.Superbadges__c} onchange={handleChange}></lightning-input>
+                <lightning-input type="text" name="Trails__c" label="Total Trails" value={portfolio.Trails__c} onchange={handleChange}></lightning-input>
+
+
+                </lightning-accordion-section>
+            
+        </lightning-accordion>
+       
+        <lightning-button class="slds-m-left_small"  variant="base" label={projectLabel} onclick={handleProject}></lightning-button>
+        <template if:true={createProject}>
+            <c-create-projects onclose={handleClose} ondatarec={handleCreate}></c-create-projects>
+        </template>
+        
+        <div class="slds-var-p-around_small">
+            <lightning-button variant="destructive" label="Cancel" title="Cancel" onclick={handleCancel}></lightning-button>
+            &nbsp; &nbsp;
+            <lightning-button variant="brand" label="Submit" type="Submit" title="Submit" onclick={handleClick}></lightning-button>
+        </div>
+    </div>
+</template>

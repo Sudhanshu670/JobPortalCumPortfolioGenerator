@@ -1,0 +1,52 @@
+<template>
+  <div class="header" style="background-color: #333; color: #fff; padding: 20px; text-align: center;" >
+    <h1 style="font-size: 28px;">There are tons of companies Out there and we are Glad you choose us for going for going ahead</h1>
+  
+    <p style="margin-top: 5px; font-size: 16px;"> We at SFDC Ninja are working on cutting edge technologies to provide best and latest solutions to our clients</p>
+
+  </div>
+  &nbsp;
+  <lightning-layout multiple-rows>
+    <lightning-layout-item size="12" padding="around-small" small-device-size="3" medium-device-size="6" large-device-size="3" >
+      <lightning-input type="text" variant="standard" name="Country" label="Country" placeholder="type here..." onchange={handleChange}></lightning-input>
+
+    </lightning-layout-item>
+    <lightning-layout-item size="12" padding="around-small" small-device-size="3" medium-device-size="6" large-device-size="3">
+      <lightning-input type="text" name="JobId" label="JobId" placeholder="type here... " onchange={handleChange}></lightning-input>
+
+    </lightning-layout-item>
+    <lightning-layout-item size="12" padding="around-small" small-device-size="3" medium-device-size="6" large-device-size="3">
+      <lightning-input type="text" name="Technology" label="Technology" placeholder="type here... " onchange={handleChange}></lightning-input>
+
+    </lightning-layout-item>
+    
+  </lightning-layout>
+  
+  <div class="slds-grid slds-wrap">
+    <template if:true={jobsFetched} for:each={jobsFetched} for:item="job">
+      <div key={job.id}  class="slds-col slds-size_1-of-3">
+        <lightning-card   padding="around-small" class="slds-m-around_medium"   variant="Narrow"  title={job.Name} icon-name="standard:employee_job">
+          <lightning-button-icon  icon-name="utility:down" class=slds-m-around_medium  variant="border-filled" alternative-text="Show More" slot="actions"></lightning-button-icon>
+          <p class="slds-p-horizontal_small">
+              Country : {job.Country__c} <br/>
+              JobID : {job.JOBID__c}<br/>
+              Technology: {job.Technology__c}<br/>
+              
+          </p>
+          <p slot="footer"><a onclick={handleOnclick} name={job.Id}>More Info</a></p>
+        </lightning-card>
+      </div>
+     </template>
+  </div>
+    
+    
+      
+      
+     
+       
+  </template>
+    
+   
+  
+  
+   

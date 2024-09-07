@@ -1,0 +1,16 @@
+.certPic{
+    height: 40px;
+    width: 40px;
+    margin: 16px 16px 0px 0px;
+}
+.body{
+    background-color: white;
+    color: black;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.header{
+    color:white;
+    background-color: black;
+    
+}
